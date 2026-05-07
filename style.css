@@ -167,9 +167,8 @@ h3 {
     grid-area: infobox;
     width: 300px;
     max-width: 300px;
-    float: none !important;
     margin: 0;
-    border: 2px solid var(--point);
+    border: 2px solid #12AEB7;
     background: #fff;
     font-size: 14px;
     box-sizing: border-box;
@@ -183,10 +182,9 @@ h3 {
     font-size: 16px;
     padding: 10px 0 8px;
     background: #fff;
-    border-bottom: 1px solid var(--point);
+    border-bottom: 1px solid #12AEB7;
 }
 
-/* 정보박스 상단: 심볼 / 회색 막대 / 이름 */
 .infobox-head {
     display: grid;
     grid-template-columns: 92px 1px 1fr;
@@ -203,17 +201,15 @@ h3 {
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
 }
 
-.infobox-symbol img,
-.infobox img {
+.infobox-symbol img {
     display: block;
-    width: 86px !important;
-    height: 86px !important;
-    max-width: 86px !important;
-    max-height: 86px !important;
-    object-fit: contain !important;
+    width: 86px;
+    height: 86px;
+    max-width: 86px;
+    max-height: 86px;
+    object-fit: contain;
 }
 
 .infobox-divider {
@@ -247,41 +243,104 @@ h3 {
     font-weight: 500;
 }
 
-/* 정보박스 표 */
-.infobox table,
+/* 표 */
 .infobox-table {
     width: 100%;
-    table-layout: fixed;
     border-collapse: collapse;
+    table-layout: fixed;
     margin: 0;
 }
 
-.infobox th {
-    background: var(--point-dark);
-    color: #fff;
-    text-align: center;
-    padding: 7px 8px;
-    border: 1px solid #b8d9dd;
-    font-weight: 700;
-    white-space: nowrap;
+.infobox-table .col-main {
+    width: 38%;
 }
 
-.infobox td {
-    background: #fff;
-    color: #000;
-    padding: 7px 8px;
-    border: 1px solid #ddd;
+.infobox-table .col-sub {
+    width: 22%;
+}
+
+.infobox-table .col-value {
+    width: 40%;
+}
+
+.infobox-table th,
+.infobox-table td {
+    border: 1px solid #d7d7d7;
+    padding: 9px 10px;
+    vertical-align: middle;
     word-break: keep-all;
 }
 
-.infobox-table > tbody > tr > th:first-child {
-    width: 92px;
+.infobox-table th {
+    font-weight: 700;
+    text-align: center;
 }
 
-.infobox th.subhead {
-    width: 52px;
-    background: var(--point-dark);
+.infobox-table td {
+    background: #fff;
+    color: #000;
+    text-align: left;
+}
+
+/* 일반 항목의 왼쪽 큰 제목칸 */
+.infobox-table th[colspan="2"] {
+    background: #12959c;
     color: #fff;
+}
+
+/* 상징 묶음의 첫 열 */
+.infobox-table th[rowspan] {
+    background: #12959c;
+    color: #fff;
+}
+
+/* 상징의 세부 항목칸 */
+.infobox-table tr th:not([colspan="2"]):not([rowspan]) {
+    background: #12959c;
+    color: #fff;
+}
+
+/* 모바일 */
+@media screen and (max-width: 960px) {
+    .infobox {
+        width: 100%;
+        max-width: 360px;
+        margin: 0 auto 24px;
+    }
+
+    .infobox-head {
+        grid-template-columns: 86px 1px 1fr;
+        column-gap: 13px;
+        padding: 13px 12px;
+    }
+
+    .infobox-symbol {
+        width: 86px;
+        height: 86px;
+    }
+
+    .infobox-symbol img {
+        width: 80px;
+        height: 80px;
+        max-width: 80px;
+        max-height: 80px;
+    }
+
+    .infobox-divider {
+        height: 68px;
+    }
+
+    .infobox-name .ko {
+        font-size: 23px;
+    }
+
+    .infobox-name .hanja {
+        font-size: 16px;
+    }
+
+    .infobox-name .en {
+        font-size: 14px;
+    }
 }
 
 /* ------------------------------
