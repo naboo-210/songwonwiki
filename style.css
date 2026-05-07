@@ -30,13 +30,12 @@ img.img-error {
 
 /* ------------------------------
    페이지 컨테이너
-   데스크탑: 본문 / 정보표 2단
 ------------------------------ */
 
 #page-container {
-    max-width: 1280px;
+    max-width: 1180px;
     margin: 0 auto;
-    padding: 24px 20px 100px;
+    padding: 34px 42px 110px;
     background: #fff;
     box-sizing: border-box;
 
@@ -46,60 +45,28 @@ img.img-error {
         "title title"
         "toc   infobox"
         "main  infobox";
-    column-gap: 28px;
+    column-gap: 34px;
     align-items: start;
 }
 
-/* 문서 제목 */
-
-.document-title {
-    grid-area: title;
-    font-size: 34px;
-    margin: 10px 0 26px;
-    font-weight: 700;
-    line-height: 1.25;
-}
-
-/* ------------------------------
-   제목 스타일
------------------------------- */
-
-h2, h3 {
-    font-weight: 700;
-    color: #000;
-    margin-top: 40px;
-    margin-bottom: 12px;
-    position: relative;
-}
-
-h2 {
-    font-size: 26px;
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 6px;
-}
-
-h3 {
-    font-size: 20px;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 4px;
-}
-
-.section-number {
-    color: var(--point);
-    margin-right: 4px;
-}
-
-/* ------------------------------
-   본문 영역
------------------------------- */
-
+/* 본문 영역 */
 #content {
     grid-area: main;
     min-width: 0;
+    padding-top: 22px; /* 개요가 정보박스보다 너무 위로 붙지 않게 내림 */
 }
 
 #content p {
     margin: 0 0 1.15em;
+}
+
+/* 문서 제목 */
+.document-title {
+    grid-area: title;
+    font-size: 34px;
+    margin: 6px 0 28px;
+    font-weight: 700;
+    line-height: 1.25;
 }
 
 /* ------------------------------
@@ -121,21 +88,63 @@ h3 {
 .infobox-title {
     text-align: center;
     font-weight: 700;
-    padding: 10px 0 7px;
+    padding: 9px 0 8px;
     background: #ffffff;
     border-bottom: 1px solid var(--point);
     font-size: 16px;
 }
 
-.infobox-image {
-    text-align: center;
-    padding: 12px 0 10px;
+/* 정보표 상단: 심볼 + 이름 */
+.infobox-head {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    padding: 14px 12px 15px;
+    border-bottom: 1px solid #ddd;
+    background: #fff;
 }
 
-.infobox-image img {
-    width: 100px;
-    max-width: 70%;
+.infobox-symbol {
+    width: 88px;
+    height: 88px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.infobox-symbol img {
+    max-width: 88px;
+    max-height: 88px;
+    width: auto;
     height: auto;
+}
+
+.infobox-name {
+    min-width: 120px;
+    padding-left: 14px;
+    border-left: 1px solid #ddd;
+    line-height: 1.35;
+}
+
+.infobox-name .ko {
+    font-size: 26px;
+    font-weight: 800;
+    color: #000;
+    letter-spacing: -0.04em;
+}
+
+.infobox-name .hanja {
+    margin-top: 2px;
+    font-size: 17px;
+    color: #000;
+}
+
+.infobox-name .en {
+    margin-top: 3px;
+    font-size: 15px;
+    color: #000;
+    font-weight: 500;
 }
 
 .infobox table {
@@ -147,12 +156,18 @@ h3 {
 .infobox th {
     background: var(--point-dark);
     color: #fff;
-    text-align: left;
+    text-align: center;
     padding: 7px 8px;
     width: 92px;
     border: 1px solid #b8d9dd;
     font-weight: 700;
     white-space: nowrap;
+}
+
+.infobox th.subhead {
+    width: 52px;
+    background: var(--point-dark);
+    color: #fff;
 }
 
 .infobox td {
@@ -357,31 +372,58 @@ table td {
     #page-container {
         display: block;
         max-width: 100%;
-        padding: 18px 14px 80px;
+        padding: 22px 18px 80px;
     }
 
     .document-title {
         font-size: 30px;
-        margin: 8px 0 18px;
+        margin: 8px 0 20px;
     }
 
     .infobox {
         width: 100%;
         max-width: 360px;
-        margin: 0 auto 20px;
+        margin: 0 auto 24px;
         float: none !important;
+    }
+
+    .infobox-head {
+        gap: 14px;
+        padding: 13px 10px;
+    }
+
+    .infobox-symbol {
+        width: 82px;
+        height: 82px;
+    }
+
+    .infobox-symbol img {
+        max-width: 82px;
+        max-height: 82px;
+    }
+
+    .infobox-name .ko {
+        font-size: 24px;
+    }
+
+    .infobox-name .hanja {
+        font-size: 16px;
+    }
+
+    .infobox-name .en {
+        font-size: 14px;
     }
 
     .toc-container {
         width: auto;
-        max-width: 260px;
-        margin: 0 0 24px 0;
+        max-width: 250px;
+        margin: 0 0 26px 0;
         padding: 9px 11px;
         font-size: 13.5px;
     }
 
-    .toc-list ul {
-        padding-left: 12px;
+    #content {
+        padding-top: 8px;
     }
 
     h2 {
@@ -403,8 +445,6 @@ table td {
     }
 }
 
-/* 아주 좁은 화면 */
-
 @media screen and (max-width: 520px) {
 
     body {
@@ -412,8 +452,8 @@ table td {
     }
 
     #page-container {
-        padding-left: 12px;
-        padding-right: 12px;
+        padding-left: 14px;
+        padding-right: 14px;
     }
 
     .toc-container {
