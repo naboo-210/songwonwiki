@@ -2,8 +2,9 @@
     --point: #12AEB7;
     --point-dark: #12959c;
     --text: #222;
-    --border: #d8d8d8;
     --bg: #f5f5f5;
+    --border: #d8d8d8;
+    --light-border: #e1e1e1;
 }
 
 html, body {
@@ -19,11 +20,14 @@ html, body {
     overflow-x: hidden;
 }
 
-/* 전체 흰 문서 박스 */
+/* ============================================================
+   전체 문서 박스
+============================================================ */
+
 #page-container {
     max-width: 1120px;
     margin: 0 auto;
-    padding: 34px 48px 110px;
+    padding: 34px 56px 110px;
     background: #fff;
     box-sizing: border-box;
 
@@ -45,65 +49,23 @@ html, body {
     margin: 4px 0 28px;
     font-weight: 700;
     line-height: 1.25;
+    color: #222;
 }
 
-/* 본문 */
-#content {
-    grid-area: main;
-    width: 100%;
-    padding-top: 48px;
-    min-width: 0;
-}
+/* ============================================================
+   상단 목차
+============================================================ */
 
-#content p {
-    margin: 0 0 1.15em;
-}
-
-/* 제목 */
-h2, h3 {
-    font-weight: 700;
-    color: #000;
-    position: relative;
-}
-
-h2 {
-    font-size: 28px;
-    margin: 42px 0 18px;
-    border-bottom: 1px solid #d8d8d8;
-    padding-bottom: 8px;
-}
-
-h3 {
-    font-size: 21px;
-    margin: 32px 0 14px;
-    border-bottom: 1px solid #eeeeee;
-    padding-bottom: 5px;
-}
-
-/* 나무위키식 접기 화살표 느낌 */
-h2::before {
-    content: "⌄";
-    color: #555;
-    font-size: 24px;
-    margin-right: 8px;
-    vertical-align: 2px;
-}
-
-.section-number {
-    color: var(--point);
-    margin-right: 4px;
-}
-
-/* 목차 */
 .toc-container {
     grid-area: toc;
     width: 250px;
-    border: 1px solid #d8d8d8;
-    background: #fbfbfb;
+    border: 1px solid #dcdcdc;
+    background: #fff;
     padding: 10px 12px;
     margin-bottom: 28px;
     font-size: 14px;
     box-sizing: border-box;
+    box-shadow: none;
 }
 
 .toc-header {
@@ -112,6 +74,7 @@ h2::before {
     align-items: center;
     font-weight: 700;
     margin-bottom: 8px;
+    color: #222;
 }
 
 #toc-toggle {
@@ -121,6 +84,7 @@ h2::before {
     font-size: 18px;
     cursor: pointer;
     transform: translateY(-2px);
+    padding: 0;
 }
 
 .toc-list {
@@ -149,11 +113,14 @@ h2::before {
 }
 
 .toc-num {
-    color: var(--point);
+    color: var(--point) !important;
     margin-right: 4px;
 }
 
-/* 정보박스 */
+/* ============================================================
+   정보박스
+============================================================ */
+
 .infobox {
     grid-area: infobox;
     width: 300px;
@@ -165,6 +132,7 @@ h2::before {
     box-sizing: border-box;
     overflow: hidden;
     align-self: start;
+    float: none !important;
 }
 
 .infobox-title {
@@ -174,15 +142,16 @@ h2::before {
     padding: 10px 0 8px;
     background: #fff;
     border-bottom: 1px solid var(--point);
+    color: #000;
 }
 
-/* 정보박스 상단 */
+/* 정보박스 상단: 심볼 / 회색 막대 / 이름 */
 .infobox-head {
     display: grid;
     grid-template-columns: 92px 1px 1fr;
     align-items: center;
     column-gap: 14px;
-    padding: 14px 14px;
+    padding: 14px;
     border-bottom: 1px solid #ddd;
     background: #fff;
 }
@@ -196,13 +165,19 @@ h2::before {
     overflow: hidden;
 }
 
-.infobox-symbol img {
+.infobox-symbol img,
+.infobox img {
     display: block;
     width: 86px !important;
     height: 86px !important;
     max-width: 86px !important;
     max-height: 86px !important;
     object-fit: contain !important;
+}
+
+img.img-error {
+    opacity: 0.3;
+    filter: grayscale(100%);
 }
 
 .infobox-divider {
@@ -236,39 +211,45 @@ h2::before {
     font-weight: 500;
 }
 
-/* 정보박스 표 */
-.infobox-table {
+/* 정보박스 표: 2번 이미지 같은 4열 기반 구조 */
+.infobox-table,
+.infobox table {
     width: 100%;
     table-layout: fixed;
     border-collapse: collapse;
     margin: 0;
+    font-size: 14px;
 }
 
 .infobox-table .col-a {
-    width: 15%;
+    width: 19%;
 }
 
 .infobox-table .col-b {
-    width: 15%;
+    width: 19%;
 }
 
 .infobox-table .col-c {
-    width: 35%;
+    width: 31%;
 }
 
 .infobox-table .col-d {
-    width: 35%;
+    width: 31%;
 }
 
 .infobox-table th,
-.infobox-table td {
+.infobox-table td,
+.infobox table th,
+.infobox table td {
     border: 1px solid #d7d7d7;
     padding: 8px 9px;
     vertical-align: middle;
     word-break: keep-all;
+    box-sizing: border-box;
 }
 
-.infobox-table th {
+.infobox-table th,
+.infobox table th {
     background: var(--point-dark);
     color: #fff;
     font-weight: 700;
@@ -276,13 +257,153 @@ h2::before {
     white-space: nowrap;
 }
 
-.infobox-table td {
+.infobox-table td,
+.infobox table td {
     background: #fff;
     color: #000;
     text-align: left;
 }
 
-/* 일반 링크 */
+/* 일반 항목: 왼쪽 제목칸이 2칸 병합된 것처럼 */
+.infobox-table th[colspan="2"] {
+    background: var(--point-dark);
+    color: #fff;
+    text-align: center;
+}
+
+/* 일반 항목 값칸 */
+.infobox-table td[colspan="2"] {
+    text-align: left;
+}
+
+/* 상징 행 */
+.infobox-table th[rowspan] {
+    background: var(--point-dark);
+    color: #fff;
+    text-align: center;
+}
+
+/* ============================================================
+   본문 영역
+============================================================ */
+
+#content {
+    grid-area: main;
+    width: 100%;
+    max-width: none;
+    padding: 56px 8px 0;
+    box-sizing: border-box;
+    min-width: 0;
+}
+
+#content > section {
+    width: 100%;
+    margin: 0 0 42px 0;
+    box-sizing: border-box;
+}
+
+#content p {
+    margin: 0 0 1.2em;
+}
+
+/* ============================================================
+   섹션 제목
+   - 기존 h2 구조도 지원
+   - section-title-row 구조도 지원
+============================================================ */
+
+h2, h3 {
+    font-weight: 700;
+    color: #111;
+    position: relative;
+}
+
+h2 {
+    font-size: 28px;
+    margin: 42px 0 18px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 8px;
+    line-height: 1.25;
+}
+
+h3 {
+    font-size: 21px;
+    margin: 32px 0 14px;
+    border-bottom: 1px solid #eeeeee;
+    padding-bottom: 5px;
+    line-height: 1.3;
+}
+
+/* h2 앞 접기 화살표 느낌 */
+h2::before {
+    content: "⌄";
+    color: #555;
+    font-size: 24px;
+    margin-right: 8px;
+    vertical-align: 2px;
+}
+
+/* 번호 색상 강제 통일 */
+.section-number,
+.section-title-row h2 .section-number,
+.toc-num,
+.footnote-ref a,
+.footnotes li::marker {
+    color: var(--point) !important;
+}
+
+/* section-title-row 구조가 있을 때 */
+.section-title-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    padding-bottom: 12px;
+    margin: 42px 0 18px;
+    border-bottom: 1px solid var(--border);
+}
+
+.section-title-row h2 {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #111;
+}
+
+.section-title-row h2::before {
+    content: "⌄";
+    color: #555;
+    font-size: 24px;
+    margin-right: 8px;
+    vertical-align: 2px;
+}
+
+.edit-link {
+    color: #0b78e3;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+    white-space: nowrap;
+    margin-top: 2px;
+}
+
+.edit-link:hover {
+    text-decoration: underline;
+}
+
+.section-body {
+    width: 100%;
+    padding: 0 4px;
+    box-sizing: border-box;
+}
+
+/* ============================================================
+   일반 링크
+============================================================ */
+
 a {
     color: var(--point);
 }
@@ -291,12 +412,16 @@ a:hover {
     text-decoration: underline;
 }
 
-/* 일반 표 */
+/* ============================================================
+   일반 표
+============================================================ */
+
 .table-wrap {
     width: 100%;
     overflow-x: auto;
 }
 
+#content table,
 table {
     width: 100%;
     border-collapse: collapse;
@@ -304,6 +429,7 @@ table {
     font-size: 14px;
 }
 
+#content table th,
 table th {
     background: var(--point-dark);
     color: #fff;
@@ -312,19 +438,35 @@ table th {
     white-space: nowrap;
 }
 
+#content table td,
 table td {
     padding: 7px 8px;
     border: 1px solid #bbb;
 }
 
-/* 사건사고 */
+/* 정보박스 테이블은 일반 표 규칙보다 우선 */
+.infobox table {
+    margin: 0;
+}
+
+/* ============================================================
+   사건사고
+============================================================ */
+
 .incident-list {
     list-style: disc;
     padding-left: 20px;
     margin-top: 10px;
 }
 
-/* 각주 */
+.incident-list li {
+    margin-bottom: 8px;
+}
+
+/* ============================================================
+   각주
+============================================================ */
+
 #footnotes h2 {
     margin-top: 60px;
 }
@@ -340,17 +482,13 @@ table td {
     margin-bottom: 10px;
 }
 
-.footnotes li::marker {
-    color: var(--point);
-}
-
 .footnotes a {
     color: var(--point);
     text-decoration: none;
 }
 
 .footnote-ref a {
-    color: var(--point);
+    color: var(--point) !important;
     text-decoration: none;
     font-weight: 600;
 }
@@ -375,7 +513,10 @@ table td {
     z-index: 1000;
 }
 
-/* 반응형 */
+/* ============================================================
+   반응형
+============================================================ */
+
 @media screen and (max-width: 960px) {
 
     #page-container {
@@ -406,7 +547,8 @@ table td {
         height: 86px;
     }
 
-    .infobox-symbol img {
+    .infobox-symbol img,
+    .infobox img {
         width: 80px !important;
         height: 80px !important;
         max-width: 80px !important;
@@ -431,14 +573,16 @@ table td {
 
     .toc-container {
         width: auto;
-        max-width: 235px;
+        max-width: 225px;
         margin: 0 0 26px 0;
         padding: 9px 11px;
         font-size: 13.5px;
+        border: 1px solid #dcdcdc;
+        background: #fff;
     }
 
     #content {
-        padding-top: 16px;
+        padding: 18px 4px 0;
     }
 
     h2 {
@@ -454,6 +598,20 @@ table td {
     h3 {
         font-size: 19px;
         margin-top: 28px;
+    }
+
+    .section-title-row {
+        padding-bottom: 10px;
+        margin: 34px 0 14px;
+    }
+
+    .section-title-row h2 {
+        font-size: 24px;
+    }
+
+    .section-title-row h2::before {
+        font-size: 21px;
+        margin-right: 6px;
     }
 
     table {
@@ -477,7 +635,7 @@ table td {
     }
 
     .toc-container {
-        max-width: 225px;
+        max-width: 220px;
     }
 
     .infobox {
@@ -486,5 +644,12 @@ table td {
 
     .document-title {
         font-size: 28px;
+    }
+
+    .infobox-table th,
+    .infobox-table td,
+    .infobox table th,
+    .infobox table td {
+        padding: 7px 7px;
     }
 }
