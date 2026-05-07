@@ -543,7 +543,9 @@ a:hover {
 }
 
 /* ============================================================
-   반응형
+   반응형: 태블릿 / 모바일
+   - 정보박스와 목차는 세로 배치
+   - 본문 표는 가로 스크롤 없이 화면폭에 맞춤
 ============================================================ */
 
 @media screen and (max-width: 960px) {
@@ -552,21 +554,44 @@ a:hover {
         display: block;
         max-width: 100%;
         padding: 22px 18px 80px;
+        background: #fff;
     }
 
     .document-title {
         font-size: 30px;
         margin: 0 0 20px;
+        line-height: 1.25;
     }
 
+    /* 목차 */
     .toc-container {
         width: auto;
         max-width: 220px;
         margin: 0 0 24px;
+        padding: 11px 13px;
         border: 1px solid #dddddd;
         background: #fff;
+        font-size: 13.5px;
     }
 
+    .toc-header {
+        font-size: 14px;
+        margin-bottom: 8px;
+    }
+
+    .toc-list li {
+        margin: 4px 0;
+    }
+
+    .toc-list ul {
+        padding-left: 14px;
+    }
+
+    #toc-toggle {
+        display: none !important;
+    }
+
+    /* 정보박스 */
     .infobox {
         width: 100%;
         max-width: 360px;
@@ -608,6 +633,16 @@ a:hover {
         font-size: 14px;
     }
 
+    .infobox-table th,
+    .infobox-table td,
+    .infobox table th,
+    .infobox table td {
+        padding: 7px 7px;
+        font-size: 13.5px;
+        line-height: 1.5;
+    }
+
+    /* 본문 */
     #content {
         padding-top: 20px;
     }
@@ -616,28 +651,72 @@ a:hover {
         margin-bottom: 36px;
     }
 
+    #content p {
+        font-size: 15px;
+        line-height: 1.72;
+        margin-bottom: 1.2em;
+        word-break: keep-all;
+        overflow-wrap: break-word;
+    }
+
     h2 {
         font-size: 24px;
         margin-bottom: 16px;
+        padding-bottom: 9px;
     }
 
     h3 {
         font-size: 20px;
         margin-top: 28px;
+        margin-bottom: 14px;
+        padding-bottom: 8px;
     }
 
     .section-title-row h2 {
         font-size: 24px;
     }
 
-    #content table {
-        min-width: 560px;
+    /* 본문 표: 모바일 화면폭 맞춤 */
+    .table-wrap {
+        width: 100%;
+        overflow-x: visible;
     }
 
+    #content table {
+        width: 100%;
+        min-width: 0 !important;
+        table-layout: fixed;
+        font-size: 13.5px;
+    }
+
+    #content table th,
+    #content table td {
+        padding: 7px 7px;
+        white-space: normal !important;
+        word-break: keep-all;
+        overflow-wrap: anywhere;
+        line-height: 1.55;
+    }
+
+    #content table thead th {
+        white-space: normal !important;
+    }
+
+    #content table th:first-child,
+    #content table td:first-child {
+        width: auto;
+    }
+
+    /* 정보박스 표는 본문 표 규칙과 별도로 유지 */
     .infobox table {
-        min-width: 0;
+        min-width: 0 !important;
+        table-layout: fixed;
     }
 }
+
+/* ============================================================
+   반응형: 작은 모바일
+============================================================ */
 
 @media screen and (max-width: 520px) {
 
@@ -650,22 +729,91 @@ a:hover {
         padding-right: 14px;
     }
 
+    .document-title {
+        font-size: 28px;
+    }
+
     .toc-container {
         max-width: 220px;
+        font-size: 13px;
     }
 
     .infobox {
         max-width: 100%;
     }
 
-    .document-title {
-        font-size: 28px;
+    .infobox-title {
+        font-size: 15px;
+    }
+
+    .infobox-head {
+        grid-template-columns: 80px 1px 1fr;
+        column-gap: 11px;
+        padding: 12px 10px;
+    }
+
+    .infobox-symbol {
+        width: 80px;
+        height: 80px;
+    }
+
+    .infobox-symbol img,
+    .infobox img {
+        width: 74px !important;
+        height: 74px !important;
+        max-width: 74px !important;
+        max-height: 74px !important;
+    }
+
+    .infobox-divider {
+        height: 62px;
+    }
+
+    .infobox-name .ko {
+        font-size: 21px;
+    }
+
+    .infobox-name .hanja {
+        font-size: 15px;
+    }
+
+    .infobox-name .en {
+        font-size: 13px;
     }
 
     .infobox-table th,
     .infobox-table td,
     .infobox table th,
     .infobox table td {
-        padding: 7px 7px;
+        padding: 6px 6px;
+        font-size: 13px;
+        line-height: 1.45;
+    }
+
+    h2 {
+        font-size: 23px;
+    }
+
+    h3 {
+        font-size: 19px;
+    }
+
+    #content table {
+        font-size: 13px;
+    }
+
+    #content table th,
+    #content table td {
+        padding: 6px 6px;
+        line-height: 1.5;
+    }
+
+    .footnotes {
+        font-size: 12.5px;
+    }
+
+    .fn-tooltip {
+        max-width: calc(100vw - 32px);
+        font-size: 12.5px;
     }
 }
