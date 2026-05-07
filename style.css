@@ -2,14 +2,22 @@
    기본 설정
 ------------------------------ */
 
+:root {
+    --point: #12AEB7;
+    --point-dark: #0f8f98;
+    --text: #222;
+    --border: #cfcfcf;
+    --bg: #f5f5f5;
+}
+
 html, body {
     margin: 0;
     padding: 0;
-    background: #f5f5f5;
+    background: var(--bg);
     font-family: "Pretendard", "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
     font-size: 15px;
     line-height: 1.72;
-    color: #222;
+    color: var(--text);
     letter-spacing: -0.02em;
     font-stretch: 95%;
     overflow-x: hidden;
@@ -20,25 +28,40 @@ img.img-error {
     filter: grayscale(100%);
 }
 
-/* 페이지 컨테이너 */
+/* ------------------------------
+   페이지 컨테이너
+   데스크탑: 본문 / 정보표 2단
+------------------------------ */
+
 #page-container {
     max-width: 1280px;
     margin: 0 auto;
     padding: 24px 20px 100px;
     background: #fff;
     box-sizing: border-box;
+
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 300px;
+    grid-template-areas:
+        "title title"
+        "toc   infobox"
+        "main  infobox";
+    column-gap: 28px;
+    align-items: start;
 }
 
 /* 문서 제목 */
+
 .document-title {
+    grid-area: title;
     font-size: 34px;
-    margin-top: 10px;
-    margin-bottom: 25px;
+    margin: 10px 0 26px;
     font-weight: 700;
+    line-height: 1.25;
 }
 
 /* ------------------------------
-   제목 스타일 (h2, h3)
+   제목 스타일
 ------------------------------ */
 
 h2, h3 {
@@ -62,62 +85,81 @@ h3 {
 }
 
 .section-number {
-    color: #7ca9b3;
+    color: var(--point);
     margin-right: 4px;
 }
 
 /* ------------------------------
-   InfoBox (우측 정보표)
+   본문 영역
+------------------------------ */
+
+#content {
+    grid-area: main;
+    min-width: 0;
+}
+
+#content p {
+    margin: 0 0 1.15em;
+}
+
+/* ------------------------------
+   정보표
 ------------------------------ */
 
 .infobox {
+    grid-area: infobox;
     width: 300px;
-    float: right;
-    margin-left: 20px;
-    margin-bottom: 20px;
-    border: 2px solid #3552a3;
+    float: none !important;
+    margin: 0 0 24px 0;
+    border: 2px solid var(--point);
     font-size: 14px;
     background: #fff;
+    box-sizing: border-box;
+    align-self: start;
 }
 
 .infobox-title {
     text-align: center;
-    font-weight: bold;
-    padding: 10px 0 6px;
+    font-weight: 700;
+    padding: 10px 0 7px;
     background: #ffffff;
-    border-bottom: 1px solid #3552a3;
+    border-bottom: 1px solid var(--point);
     font-size: 16px;
 }
 
 .infobox-image {
     text-align: center;
-    padding: 12px 0;
+    padding: 12px 0 10px;
 }
 
 .infobox-image img {
-    width: 95px;
+    width: 100px;
+    max-width: 70%;
     height: auto;
 }
 
 .infobox table {
     width: 100%;
     border-collapse: collapse;
+    margin: 0;
 }
 
 .infobox th {
-    background: #2f5556;
+    background: var(--point-dark);
     color: #fff;
     text-align: left;
     padding: 7px 8px;
-    width: 90px;
-    border: 1px solid #bbb;
+    width: 92px;
+    border: 1px solid #b8d9dd;
+    font-weight: 700;
+    white-space: nowrap;
 }
 
 .infobox td {
     background: #ffffff;
     color: #000;
     padding: 7px 8px;
-    border: 1px solid #bbb;
+    border: 1px solid #ddd;
 }
 
 /* ------------------------------
@@ -125,12 +167,14 @@ h3 {
 ------------------------------ */
 
 .toc-container {
+    grid-area: toc;
     width: 230px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--point);
     background: #fbfbfb;
     padding: 10px 12px;
-    margin-bottom: 25px;
+    margin-bottom: 26px;
     font-size: 14px;
+    box-sizing: border-box;
 }
 
 .toc-header {
@@ -144,6 +188,7 @@ h3 {
 #toc-toggle {
     background: none;
     border: none;
+    color: var(--point);
     font-size: 18px;
     cursor: pointer;
     transform: translateY(-2px);
@@ -170,9 +215,25 @@ h3 {
     color: #333;
 }
 
+.toc-list a:hover {
+    text-decoration: underline;
+}
+
 .toc-num {
-    color: #7ca9b3;
+    color: var(--point);
     margin-right: 4px;
+}
+
+/* ------------------------------
+   링크
+------------------------------ */
+
+a {
+    color: var(--point);
+}
+
+a:hover {
+    text-decoration: underline;
 }
 
 /* ------------------------------
@@ -192,7 +253,7 @@ table {
 }
 
 table th {
-    background: #3552a3;
+    background: var(--point-dark);
     color: #fff;
     padding: 7px 8px;
     border: 1px solid #bbb;
@@ -225,14 +286,20 @@ table td {
 .footnotes {
     font-size: 13px;
     padding-left: 20px;
+    border-top: 1px solid #ddd;
+    padding-top: 12px;
 }
 
 .footnotes li {
     margin-bottom: 10px;
 }
 
+.footnotes li::marker {
+    color: var(--point);
+}
+
 .footnotes a {
-    color: #7ca9b3;
+    color: var(--point);
     text-decoration: none;
 }
 
@@ -245,8 +312,9 @@ table td {
 ------------------------------ */
 
 .footnote-ref a {
-    color: #7ca9b3;
+    color: var(--point);
     text-decoration: none;
+    font-weight: 600;
 }
 
 .footnote-ref a:hover {
@@ -254,25 +322,25 @@ table td {
 }
 
 /* ------------------------------
-   각주 툴팁 (JS에서 동적 삽입)
+   각주 툴팁
 ------------------------------ */
 
 .fn-tooltip {
     position: absolute;
-    max-width: 260px;
+    max-width: 300px;
     background: #fff;
-    border: 1px solid #7ca9b3;
+    border: 1px solid var(--point);
     padding: 10px 12px;
     font-size: 13px;
     line-height: 1.6;
     color: #222;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+    border-radius: 3px;
     z-index: 1000;
 }
 
 .fn-tooltip a {
-    color: #7ca9b3;
+    color: var(--point);
     text-decoration: none;
 }
 
@@ -281,22 +349,82 @@ table td {
 }
 
 /* ------------------------------
-   반응형
+   모바일 / 태블릿
 ------------------------------ */
 
 @media screen and (max-width: 960px) {
 
+    #page-container {
+        display: block;
+        max-width: 100%;
+        padding: 18px 14px 80px;
+    }
+
+    .document-title {
+        font-size: 30px;
+        margin: 8px 0 18px;
+    }
+
     .infobox {
-        float: none;
         width: 100%;
-        margin: 0 0 20px 0;
+        max-width: 360px;
+        margin: 0 auto 20px;
+        float: none !important;
     }
 
     .toc-container {
-        width: 100%;
+        width: auto;
+        max-width: 260px;
+        margin: 0 0 24px 0;
+        padding: 9px 11px;
+        font-size: 13.5px;
+    }
+
+    .toc-list ul {
+        padding-left: 12px;
+    }
+
+    h2 {
+        font-size: 24px;
+        margin-top: 34px;
+    }
+
+    h3 {
+        font-size: 19px;
+        margin-top: 28px;
+    }
+
+    table {
+        min-width: 560px;
+    }
+
+    .infobox table {
+        min-width: 0;
+    }
+}
+
+/* 아주 좁은 화면 */
+
+@media screen and (max-width: 520px) {
+
+    body {
+        font-size: 15px;
     }
 
     #page-container {
-        padding: 20px 14px 80px;
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .toc-container {
+        max-width: 235px;
+    }
+
+    .infobox {
+        max-width: 100%;
+    }
+
+    .document-title {
+        font-size: 28px;
     }
 }
