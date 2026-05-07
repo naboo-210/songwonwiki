@@ -550,18 +550,10 @@ a:hover {
 
 @media screen and (max-width: 960px) {
 
-    #page-container {
-        display: block;
-        max-width: 100%;
-        padding: 22px 18px 80px;
-        background: #fff;
-    }
-
-    .document-title {
-        font-size: 30px;
-        margin: 0 0 20px;
-        line-height: 1.25;
-    }
+    .document-title { order: 1; }
+.infobox { order: 2; }
+.toc-container { order: 3; }
+#content { order: 4; }
 
     /* 목차 */
     .toc-container {
