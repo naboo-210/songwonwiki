@@ -1,12 +1,9 @@
-/* ------------------------------
-   기본 설정
------------------------------- */
-
 :root {
     --point: #12AEB7;
-    --point-dark: #0f8f98;
+    --point-dark: #12959c;
     --text: #222;
-    --border: #cfcfcf;
+    --border: #d5d5d5;
+    --light-border: #dddddd;
     --bg: #f5f5f5;
 }
 
@@ -23,158 +20,81 @@ html, body {
     overflow-x: hidden;
 }
 
-img.img-error {
-    opacity: 0.3;
-    filter: grayscale(100%);
-}
-
 /* ------------------------------
-   페이지 컨테이너
+   전체 문서 박스
 ------------------------------ */
 
 #page-container {
-    max-width: 1180px;
+    max-width: 1120px;
     margin: 0 auto;
     padding: 34px 42px 110px;
     background: #fff;
     box-sizing: border-box;
 
     display: grid;
-    grid-template-columns: minmax(0, 1fr) 300px;
+    grid-template-columns: minmax(0, 720px) 300px;
     grid-template-areas:
         "title title"
         "toc   infobox"
         "main  infobox";
-    column-gap: 34px;
+    column-gap: 32px;
     align-items: start;
+    justify-content: center;
 }
 
-/* 본문 영역 */
+/* ------------------------------
+   문서 제목
+------------------------------ */
+
+.document-title {
+    grid-area: title;
+    font-size: 34px;
+    margin: 4px 0 28px;
+    font-weight: 700;
+    line-height: 1.25;
+}
+
+/* ------------------------------
+   본문 영역
+------------------------------ */
+
 #content {
     grid-area: main;
     min-width: 0;
-    padding-top: 22px; /* 개요가 정보박스보다 너무 위로 붙지 않게 내림 */
+    padding-top: 34px;
 }
 
 #content p {
     margin: 0 0 1.15em;
 }
 
-/* 문서 제목 */
-.document-title {
-    grid-area: title;
-    font-size: 34px;
-    margin: 6px 0 28px;
-    font-weight: 700;
-    line-height: 1.25;
-}
-
 /* ------------------------------
-   정보표
+   제목
 ------------------------------ */
 
-.infobox {
-    grid-area: infobox;
-    width: 300px;
-    float: none !important;
-    margin: 0 0 24px 0;
-    border: 2px solid var(--point);
-    font-size: 14px;
-    background: #fff;
-    box-sizing: border-box;
-    align-self: start;
-}
-
-.infobox-title {
-    text-align: center;
+h2, h3 {
     font-weight: 700;
-    padding: 9px 0 8px;
-    background: #ffffff;
-    border-bottom: 1px solid var(--point);
-    font-size: 16px;
+    color: #000;
+    position: relative;
 }
 
-/* 정보표 상단: 심볼 + 이름 */
-.infobox-head {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 16px;
-    padding: 14px 12px 15px;
-    border-bottom: 1px solid #ddd;
-    background: #fff;
-}
-
-.infobox-symbol {
-    width: 88px;
-    height: 88px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.infobox-symbol img {
-    max-width: 88px;
-    max-height: 88px;
-    width: auto;
-    height: auto;
-}
-
-.infobox-name {
-    min-width: 120px;
-    padding-left: 14px;
-    border-left: 1px solid #ddd;
-    line-height: 1.35;
-}
-
-.infobox-name .ko {
+h2 {
     font-size: 26px;
-    font-weight: 800;
-    color: #000;
-    letter-spacing: -0.04em;
+    margin: 42px 0 14px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 6px;
 }
 
-.infobox-name .hanja {
-    margin-top: 2px;
-    font-size: 17px;
-    color: #000;
+h3 {
+    font-size: 20px;
+    margin: 32px 0 12px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 4px;
 }
 
-.infobox-name .en {
-    margin-top: 3px;
-    font-size: 15px;
-    color: #000;
-    font-weight: 500;
-}
-
-.infobox table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 0;
-}
-
-.infobox th {
-    background: var(--point-dark);
-    color: #fff;
-    text-align: center;
-    padding: 7px 8px;
-    width: 92px;
-    border: 1px solid #b8d9dd;
-    font-weight: 700;
-    white-space: nowrap;
-}
-
-.infobox th.subhead {
-    width: 52px;
-    background: var(--point-dark);
-    color: #fff;
-}
-
-.infobox td {
-    background: #ffffff;
-    color: #000;
-    padding: 7px 8px;
-    border: 1px solid #ddd;
+.section-number {
+    color: var(--point);
+    margin-right: 4px;
 }
 
 /* ------------------------------
@@ -184,10 +104,10 @@ img.img-error {
 .toc-container {
     grid-area: toc;
     width: 230px;
-    border: 1px solid var(--point);
+    border: 1px solid #d8d8d8;
     background: #fbfbfb;
     padding: 10px 12px;
-    margin-bottom: 26px;
+    margin-bottom: 28px;
     font-size: 14px;
     box-sizing: border-box;
 }
@@ -240,7 +160,132 @@ img.img-error {
 }
 
 /* ------------------------------
-   링크
+   정보박스
+------------------------------ */
+
+.infobox {
+    grid-area: infobox;
+    width: 300px;
+    max-width: 300px;
+    float: none !important;
+    margin: 0;
+    border: 2px solid var(--point);
+    background: #fff;
+    font-size: 14px;
+    box-sizing: border-box;
+    overflow: hidden;
+    align-self: start;
+}
+
+.infobox-title {
+    text-align: center;
+    font-weight: 700;
+    font-size: 16px;
+    padding: 10px 0 8px;
+    background: #fff;
+    border-bottom: 1px solid var(--point);
+}
+
+/* 정보박스 상단: 심볼 / 회색 막대 / 이름 */
+.infobox-head {
+    display: grid;
+    grid-template-columns: 92px 1px 1fr;
+    align-items: center;
+    column-gap: 14px;
+    padding: 14px 14px;
+    border-bottom: 1px solid #ddd;
+    background: #fff;
+}
+
+.infobox-symbol {
+    width: 92px;
+    height: 92px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.infobox-symbol img,
+.infobox img {
+    display: block;
+    width: 86px !important;
+    height: 86px !important;
+    max-width: 86px !important;
+    max-height: 86px !important;
+    object-fit: contain !important;
+}
+
+.infobox-divider {
+    width: 1px;
+    height: 74px;
+    background: #d8d8d8;
+}
+
+.infobox-name {
+    min-width: 0;
+    line-height: 1.35;
+}
+
+.infobox-name .ko {
+    font-size: 25px;
+    font-weight: 800;
+    color: #000;
+    letter-spacing: -0.04em;
+}
+
+.infobox-name .hanja {
+    margin-top: 2px;
+    font-size: 16px;
+    color: #000;
+}
+
+.infobox-name .en {
+    margin-top: 3px;
+    font-size: 14px;
+    color: #000;
+    font-weight: 500;
+}
+
+/* 정보박스 표 */
+.infobox table,
+.infobox-table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    margin: 0;
+}
+
+.infobox th {
+    background: var(--point-dark);
+    color: #fff;
+    text-align: center;
+    padding: 7px 8px;
+    border: 1px solid #b8d9dd;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.infobox td {
+    background: #fff;
+    color: #000;
+    padding: 7px 8px;
+    border: 1px solid #ddd;
+    word-break: keep-all;
+}
+
+.infobox-table > tbody > tr > th:first-child {
+    width: 92px;
+}
+
+.infobox th.subhead {
+    width: 52px;
+    background: var(--point-dark);
+    color: #fff;
+}
+
+/* ------------------------------
+   일반 링크
 ------------------------------ */
 
 a {
@@ -252,7 +297,7 @@ a:hover {
 }
 
 /* ------------------------------
-   표 스타일
+   일반 표
 ------------------------------ */
 
 .table-wrap {
@@ -281,7 +326,7 @@ table td {
 }
 
 /* ------------------------------
-   사건사고 목록
+   사건사고
 ------------------------------ */
 
 .incident-list {
@@ -291,7 +336,7 @@ table td {
 }
 
 /* ------------------------------
-   각주 섹션
+   각주
 ------------------------------ */
 
 #footnotes h2 {
@@ -318,28 +363,18 @@ table td {
     text-decoration: none;
 }
 
-.footnotes a:hover {
-    text-decoration: underline;
-}
-
-/* ------------------------------
-   본문 각주 번호
------------------------------- */
-
 .footnote-ref a {
     color: var(--point);
     text-decoration: none;
     font-weight: 600;
 }
 
-.footnote-ref a:hover {
+.footnote-ref a:hover,
+.footnotes a:hover {
     text-decoration: underline;
 }
 
-/* ------------------------------
-   각주 툴팁
------------------------------- */
-
+/* 각주 툴팁 */
 .fn-tooltip {
     position: absolute;
     max-width: 300px;
@@ -354,17 +389,8 @@ table td {
     z-index: 1000;
 }
 
-.fn-tooltip a {
-    color: var(--point);
-    text-decoration: none;
-}
-
-.fn-tooltip a:hover {
-    text-decoration: underline;
-}
-
 /* ------------------------------
-   모바일 / 태블릿
+   반응형
 ------------------------------ */
 
 @media screen and (max-width: 960px) {
@@ -384,26 +410,33 @@ table td {
         width: 100%;
         max-width: 360px;
         margin: 0 auto 24px;
-        float: none !important;
     }
 
     .infobox-head {
-        gap: 14px;
-        padding: 13px 10px;
+        grid-template-columns: 86px 1px 1fr;
+        column-gap: 13px;
+        padding: 13px 12px;
     }
 
     .infobox-symbol {
-        width: 82px;
-        height: 82px;
+        width: 86px;
+        height: 86px;
     }
 
-    .infobox-symbol img {
-        max-width: 82px;
-        max-height: 82px;
+    .infobox-symbol img,
+    .infobox img {
+        width: 80px !important;
+        height: 80px !important;
+        max-width: 80px !important;
+        max-height: 80px !important;
+    }
+
+    .infobox-divider {
+        height: 68px;
     }
 
     .infobox-name .ko {
-        font-size: 24px;
+        font-size: 23px;
     }
 
     .infobox-name .hanja {
@@ -416,7 +449,7 @@ table td {
 
     .toc-container {
         width: auto;
-        max-width: 250px;
+        max-width: 235px;
         margin: 0 0 26px 0;
         padding: 9px 11px;
         font-size: 13.5px;
@@ -457,7 +490,7 @@ table td {
     }
 
     .toc-container {
-        max-width: 235px;
+        max-width: 225px;
     }
 
     .infobox {
@@ -466,155 +499,5 @@ table td {
 
     .document-title {
         font-size: 28px;
-    }
-}
-
-/* ============================================================
-   긴급 수정: 정보표 이미지 폭주 방지 + 정보표 레이아웃 고정
-============================================================ */
-
-.infobox {
-    grid-area: infobox;
-    width: 300px;
-    max-width: 300px;
-    float: none !important;
-    overflow: hidden;
-    box-sizing: border-box;
-    border: 2px solid #12AEB7;
-}
-
-/* 기존 infobox-image 구조와 새 infobox-symbol 구조 둘 다 대응 */
-.infobox-image,
-.infobox-symbol {
-    width: 92px;
-    height: 92px;
-    flex: 0 0 92px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-}
-
-/* 정보표 안의 모든 이미지 강제 제한 */
-.infobox img,
-.infobox-image img,
-.infobox-symbol img {
-    display: block;
-    width: 90px !important;
-    height: 90px !important;
-    max-width: 90px !important;
-    max-height: 90px !important;
-    object-fit: contain;
-}
-
-/* 정보표 상단: 심볼 + 명칭 */
-.infobox-head {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 14px;
-    padding: 14px 12px;
-    border-bottom: 1px solid #ddd;
-    background: #fff;
-    overflow: hidden;
-}
-
-.infobox-name {
-    min-width: 0;
-    padding-left: 14px;
-    border-left: 1px solid #ddd;
-    line-height: 1.35;
-}
-
-.infobox-name .ko {
-    font-size: 25px;
-    font-weight: 800;
-    color: #000;
-    letter-spacing: -0.04em;
-}
-
-.infobox-name .hanja {
-    margin-top: 2px;
-    font-size: 16px;
-    color: #000;
-}
-
-.infobox-name .en {
-    margin-top: 3px;
-    font-size: 14px;
-    color: #000;
-    font-weight: 500;
-}
-
-/* 정보표 테이블 고정 */
-.infobox table {
-    width: 100%;
-    table-layout: fixed;
-    border-collapse: collapse;
-    margin: 0;
-}
-
-.infobox th {
-    background: #12959c;
-    color: #fff;
-    text-align: center;
-    padding: 7px 8px;
-    border: 1px solid #b8d9dd;
-    font-weight: 700;
-    white-space: nowrap;
-}
-
-.infobox td {
-    background: #fff;
-    color: #000;
-    padding: 7px 8px;
-    border: 1px solid #ddd;
-    word-break: keep-all;
-}
-
-/* 일반 2열 정보 */
-.infobox table tr:not(.symbol-row) > th:first-child {
-    width: 95px;
-}
-
-/* 본문과 정보표 간격 안정화 */
-#page-container {
-    max-width: 1180px;
-    padding-left: 42px;
-    padding-right: 42px;
-    column-gap: 36px;
-}
-
-#content {
-    min-width: 0;
-    padding-top: 28px;
-}
-
-/* 모바일 */
-@media screen and (max-width: 960px) {
-    .infobox {
-        width: 100%;
-        max-width: 360px;
-        margin: 0 auto 24px;
-    }
-
-    .infobox img,
-    .infobox-image img,
-    .infobox-symbol img {
-        width: 84px !important;
-        height: 84px !important;
-        max-width: 84px !important;
-        max-height: 84px !important;
-    }
-
-    .infobox-image,
-    .infobox-symbol {
-        width: 86px;
-        height: 86px;
-        flex-basis: 86px;
-    }
-
-    .infobox-name .ko {
-        font-size: 23px;
     }
 }
